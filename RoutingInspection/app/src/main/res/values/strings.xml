@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">RoutingInspection</string>
+    <string name="no_network">网络异常，请检查网络是否连接！</string>
+    <string name="ok_network">当前网络连接状态正常。</string>
+    <string name="loading">努力加载中…</string>
+    <string name="ok">确定</string>
+    <string name="authority">com.seatrend.routinginspection</string>
+    <string name="setting_title">设置</string>
+    <string name="setting_ok">设置成功</string>
+    <string name="plan_tittle">查验巡站计划</string>
+    <string name="plan_bottom">上传结论</string>
+    <string name="inspect_title">查验区</string>
+    <string name="qianzi">签字完成</string>
+    <string name="qianming">签名</string>
+    <string name="qianming_tip1">请先签名后执行下一步</string>
+    <string name="jugde_no">未判定</string>
+    <string name="jugde_yes">通过</string>
+</resources>

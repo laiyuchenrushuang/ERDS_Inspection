@@ -1,0 +1,1 @@
+include ':app', ':zxinglib', ':InspectAssistant', ':http_sdk', ':rinspection',":measureVehicle"

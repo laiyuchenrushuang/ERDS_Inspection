@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">InspectAssistant</string>
+    <string name="title">查验终端辅助助手</string>
+    <string name="loading">努力加载中…</string>
+    <string name="cjzt">插件状态</string>
+    <string name="yaz">已安装</string>
+    <string name="waz">未安装</string>
+    <string name="serial_title">流水状态查询</string>
+    <string name="serial_search">查询</string>
+    <string name="cs_result">流水查询结果</string>
+    <string name="setting">设置</string>
+    <string name="address">http://11.121.35.182:9091/vehicleCheckAsistant</string>
+    <string name="setting_title">设置</string>
+    <string name="setting_ok">设置成功</string>
+</resources>

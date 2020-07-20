@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@mipmap/bg_header"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/measure_btn_cancel"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_login_ok"
+            android:onClick="btnCal"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_marginLeft="12dp"
+            android:text="@android:string/cancel" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+        <Button
+            android:id="@+id/measure_btn_ok"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_login_ok"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:enabled="false"
+            android:onClick="btnOk"
+            android:layout_marginRight="12dp"
+            android:layout_alignParentRight="true"
+            android:text="@android:string/ok" />
+    </RelativeLayout>
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <LinearLayout
+                android:id="@+id/tcp_ll"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TCP地址:"
+                        android:textColor="@color/blacktext"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_tcp_ip"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="12dp"
+                        android:text="@string/measure_tv_null"
+                        android:textColor="@color/blacktext"
+                        android:textSize="16sp" />
+                    <Button
+                        android:id="@+id/btn_tcp_connect"
+                        style="@style/measure_btn"
+                        android:text="连接" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/space_small"
+                        android:textColor="@color/blacktext"
+                        android:textSize="14sp"
+                        android:text="连接状态:"/>
+                    <TextView
+                        android:id="@+id/tv_tcp_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/space_small"
+                        android:textColor="@color/blacktext"
+                        android:textSize="14sp"
+                        android:text="@string/measure_tv_unconn"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/connect_tips"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:id="@+id/tv_socket_tips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bluetooth_ll"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/measure_tv_conn_hint"
+                        android:textColor="@color/blacktext"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/measure_tv_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/measure_tv_null"
+                        android:textColor="@color/blacktext"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/measure_tv_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/space_small"
+                        android:text="@string/measure_tv_unconn"
+                        android:textColor="@color/blacktext"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/appTextGray" />
+
+                <ListView
+                    android:id="@+id/measure_lv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/appTextGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/space_small"
+                    android:layout_marginBottom="@dimen/space_small"
+                    android:layout_height="wrap_content">
+
+                    <RadioGroup
+                        android:id="@+id/rb_connect_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:layout_gravity="center_vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="通讯方式:"
+                            android:textColor="@color/black"/>
+                        <RadioButton
+                            android:id="@+id/rb_bluetooth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/check_box_bg"
+                            android:layout_marginLeft="6dp"
+                            android:paddingLeft="4dp"
+                            android:text="蓝牙"/>
+                        <RadioButton
+                            android:id="@+id/rb_tcp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/check_box_bg"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="4dp"
+                            android:checked="true"
+                            android:text="网络"/>
+                    </RadioGroup>
+
+
+
+                    <Button
+                        android:id="@+id/measure_btn_start"
+                        style="@style/measure_btn"
+                        android:enabled="true"
+                        android:onClick="btnStart"
+                        android:text="@string/measure_btn_start" />
+
+                    <Button
+                        android:id="@+id/measure_btn_stop"
+                        style="@style/measure_btn"
+                        android:enabled="true"
+                        android:onClick="btnStop"
+                        android:text="@string/measure_btn_stop" />
+
+
+                    <Button
+                        android:id="@+id/measure_btn_setting"
+                        style="@style/measure_btn"
+                        android:enabled="true"
+                        android:onClick="btnSetting"
+                        android:text="设置" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/appTextGray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:text="@string/mesure_tv_data_hint"
+                        android:textColor="@color/blacktext"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/measure_image1"
+                        style="@style/measure_image"
+                        android:onClick="btnImage1" />
+
+                    <ImageView
+                        android:id="@+id/measure_image2"
+                        style="@style/measure_image"
+                        android:onClick="btnImage2" />
+
+                    <ImageView
+                        android:id="@+id/measure_image3"
+                        style="@style/measure_image"
+                        android:onClick="btnImage3" />
+
+                    <ImageView
+                        android:id="@+id/measure_image4"
+                        style="@style/measure_image"
+                        android:onClick="btnImage4" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        style="@style/mesure_data_hint"
+                        android:text="@string/measure_tv_type_hint" />
+
+                    <TextView
+                        android:id="@+id/measure_tv_type"
+                        style="@style/mesure_data_text"
+                        android:text="@string/measure_tv_pu" />
+
+                    <TextView
+                        style="@style/mesure_data_hint"
+                        android:text="@string/measure_tv_carnum_hint" />
+
+                    <TextView
+                        android:id="@+id/measure_tv_carnum"
+                        style="@style/mesure_data_text"
+                        android:text="@string/measure_tv_null" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+                    <TextView
+                        style="@style/mesure_data_hint"
+                        android:text="@string/measure_tv_length_hint" />
+
+                    <TextView
+                        android:id="@+id/measure_tv_length"
+                        style="@style/mesure_data_text"
+                        android:text="@string/measure_tv_null" />
+                    <TextView
+                        style="@style/mesure_data_hint"
+                        android:text="@string/measure_tv_width_hint" />
+
+                    <TextView
+                        android:id="@+id/measure_tv_width"
+                        style="@style/mesure_data_text"
+                        android:text="@string/measure_tv_null" />
+
+                    <TextView
+                        style="@style/mesure_data_hint"
+                        android:text="@string/measure_tv_height_hint" />
+
+                    <TextView
+                        android:id="@+id/measure_tv_height"
+                        style="@style/mesure_data_text"
+                        android:text="@string/measure_tv_null" />
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/measure_ll_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/appTextGray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            style="@style/mesure_data_hint"
+                            android:text="@string/measure_tv_type_hint" />
+
+                        <TextView
+                            android:id="@+id/measure_tv_type1"
+                            style="@style/mesure_data_text"
+                            android:text="@string/measure_tv_gua" />
+
+                        <TextView
+                            style="@style/mesure_data_hint"
+                            android:text="@string/measure_tv_carnum_hint" />
+
+                        <TextView
+                            android:id="@+id/measure_tv_carnum1"
+                            style="@style/mesure_data_text"
+                            android:text="@string/measure_tv_null" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+                        <TextView
+                            style="@style/mesure_data_hint"
+                            android:text="@string/measure_tv_length_hint" />
+
+                        <TextView
+                            android:id="@+id/measure_tv_length1"
+                            style="@style/mesure_data_text"
+                            android:text="@string/measure_tv_null" />
+                        <TextView
+                            style="@style/mesure_data_hint"
+                            android:text="@string/measure_tv_width_hint" />
+
+                        <TextView
+                            android:id="@+id/measure_tv_width1"
+                            style="@style/mesure_data_text"
+                            android:text="@string/measure_tv_null" />
+
+                        <TextView
+                            style="@style/mesure_data_hint"
+                            android:text="@string/measure_tv_height_hint" />
+
+                        <TextView
+                            android:id="@+id/measure_tv_height1"
+                            style="@style/mesure_data_text"
+                            android:text="@string/measure_tv_null" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/appTextGray" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:id="@+id/cb_wkce"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:text="外廓测量"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:id="@+id/cb_zbzl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:text="整备质量"/>
+                    <TextView
+                        android:id="@+id/tv_zbzl"
+                        style="@style/mesure_data_text"
+                        android:text="@string/measure_tv_null"
+                        android:layout_marginLeft="12dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:id="@+id/cb_clzj"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:text="车辆轴距"/>
+                    <TextView
+                        android:id="@+id/measure_tv_space"
+                        style="@style/mesure_data_text"
+                        android:text="@string/measure_tv_null"
+                        android:layout_marginLeft="12dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox
+                        android:id="@+id/cb_lbgd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:text="栏板高度"/>
+                    <TextView
+                        android:id="@+id/tv_lbgd"
+                        style="@style/mesure_data_text"
+                        android:text="@string/measure_tv_null"
+                        android:layout_marginLeft="12dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_result_tips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"/>
+
+                </LinearLayout>
+                <Space
+                    android:layout_width="2dp"
+                    android:layout_height="60dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/measure_btn_get_veh"
+                    style="@style/measure_btn"
+                    android:layout_weight="1"
+                    android:enabled="true"
+                    android:onClick="btnGetVeh"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="获取车辆信息" />
+                <Button
+                    android:id="@+id/measure_btn_save_veh"
+                    style="@style/measure_btn"
+                    android:layout_weight="1"
+                    android:enabled="true"
+                    android:onClick="btnSaveVeh"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="保存测量结果" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_version"
+                style="@style/mesure_data_hint"
+                android:textSize="10sp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="6dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

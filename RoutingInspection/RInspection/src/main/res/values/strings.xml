@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">RoutingInspection</string>
+    <string name="no_network">网络异常，请检查网络是否连接！</string>
+    <string name="ok_network">当前网络连接状态正常。</string>
+    <string name="loading">努力加载中…</string>
+    <string name="ok">确定</string>
+    <string name="no">取消</string>
+    <string name="authority">com.seatrend.routinginspection</string>
+    <string name="setting_title">设置</string>
+    <string name="setting_ok">设置成功</string>
+    <string name="plan_tittle">查验巡站计划</string>
+    <string name="plan_bottom">上传结论</string>
+    <string name="inspect_title">查验区</string>
+    <string name="qianzi">签字完成</string>
+    <string name="qianming">签名</string>
+    <string name="qianming_tip1">请先签名后执行下一步</string>
+    <string name="jugde_no">未判定</string>
+    <string name="jugde_yes">通过</string>
+    <string name="jugde_out">不通过</string>
+    <string name="setting_tips">请设置网络IP地址</string>
+    <string name="details">详情</string>
+    <!--<string name="address">http://11.121.35.182:9091/vehicleCheckAsistant</string>-->
+    <string name="address">http://192.168.0.218:8080/vehicleCheckAsistant</string>
+    <string name="no_data">查询数据为空</string>
+    <string name="plan_no_network">离线计划</string>
+    <string name="search_tip">查验区搜索</string>
+    <string name="add_tip">是否添加此计划到离线列表？</string>
+    <string name="add_tip_1">此数据已经在离线列表并完成巡检内容！</string>
+    <string name="add_success">添加成功</string>
+    <string name="cancel_success">取消添加成功</string>
+    <string name="add_done">取消添加</string>
+    <string name="add">添加</string>
+    <string name="text_tip">建议输入字数不超过100个</string>
+    <string name="cancel_faield">取消失败，此数据在离线环境下已经完成了数据采集</string>
+    <string name="add_tip_2">%1$s 的判定未执行</string>
+    <string name="add_version">版本号：%1$s</string>
+    <string name="main_title">查验巡站终端</string>
+    <string name="search_null">没查询到结果</string>
+</resources>

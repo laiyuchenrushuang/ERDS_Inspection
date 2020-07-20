@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white80"
+        tools:context=".MainActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+        <include layout="@layout/common_title"/>
+
+        <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="78dp"
+                tools:layout_editor_absoluteX="19dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/iv_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        tools:ignore="MissingConstraints"
+                        android:background="@mipmap/bg_1"/>
+
+                <LinearLayout
+                        android:layout_marginTop="150dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="250dp"
+                        android:background="@drawable/title_bg">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_height="wrap_content">
+
+                        <LinearLayout
+                                android:id="@+id/ll_yyxx"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:src="@mipmap/z1"/>
+
+                            <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="预约信息"
+                                    style="@style/common_text"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:id="@+id/ll_lscx"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:src="@mipmap/z2"/>
+
+                            <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="流水查询"
+                                    style="@style/common_text"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:id="@+id/ll_cjzt"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                            <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:src="@mipmap/z3"/>
+
+                            <TextView
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="插件状态"
+                                    style="@style/common_text"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/common_title"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_margin="12dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+
+                android:text="网络地址:"/>
+
+        <EditText
+                android:id="@+id/et_network"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="left"
+                android:theme="@style/my_editText"
+                android:textSize="16sp"
+                android:background="@drawable/system_login_editext"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="12dp"/>
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="240dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/btn_blue_bg2"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="确定"/>
+
+    <Button
+            android:id="@+id/btn_sync"
+            android:layout_width="240dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/btn_blue_bg2"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="代码同步"
+            android:visibility="gone"
+            />
+</LinearLayout>

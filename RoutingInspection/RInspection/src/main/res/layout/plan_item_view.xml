@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ll_item"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:gravity="center"
+              android:background="@drawable/plan_list_item_bg"
+              android:layout_height="60dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingTop="2dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="2dp"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/tv_station_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/common_text"
+                    android:text="XXX查验区"/>
+
+            <TextView
+                    android:id="@+id/tv_station_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/common_text"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/textcolor2"
+                    android:text="计划日期2020-06-24"/>
+        </LinearLayout>
+
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                style="@style/common_text"
+                android:text="已完成"/>
+
+        <ImageView
+                android:id="@+id/iv_to"
+                android:padding="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow_right"/>
+        <CheckBox
+                android:id="@+id/cb_add"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                style="@style/common_text"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/plan_add_button"
+                android:text="添加"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:button="@null"/>
+    </LinearLayout>
+
+    <include layout="@layout/line"/>
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+    <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="6dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/take_photo"/>
+    <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:visibility="gone"
+            android:src="@mipmap/delete1"/>
+    <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textSize="@dimen/text_normal_12sp"
+            android:textColor="@color/red"
+            android:ellipsize="marquee"
+            android:layout_marginTop="6dp"
+            android:layout_below="@+id/iv_photo"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="照片类型"/>
+
+</RelativeLayout>

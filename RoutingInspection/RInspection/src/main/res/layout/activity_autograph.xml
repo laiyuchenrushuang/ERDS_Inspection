@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="请在下方签名:"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_super_18sp"
+            android:textStyle="bold" />
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_style_bg1">
+
+        <com.seatrend.routinginspection.view.AutographView
+                android:id="@+id/auto_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="20dp"
+                android:background="@drawable/btn_blue_bg2"
+                android:gravity="center"
+                android:text="重签"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_large_16sp" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/common_button_next" />
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="40dp"
+        >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp">
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/tv_item_xh"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    style="@style/common_text"
+                    android:background="@drawable/button_bg_style_rule"
+                    android:text="1"/>
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/tv_item_mc"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                style="@style/common_text"
+                android:text="查验设备完整性"/>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="0.5">
+
+            <TextView
+                    android:id="@+id/cb_jugde"
+                    style="@style/common_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:text="待判定"
+                    android:textSize="14sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/line"/>
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/common_title"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:gravity="center">
+
+        <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="30dp"
+                app:showDividers="none"
+                android:background="@drawable/searchview"/>
+    </LinearLayout>
+    <com.seatrend.routinginspection.view.slipe.SlideRecyclerView
+            android:id="@+id/rv_slide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </com.seatrend.routinginspection.view.slipe.SlideRecyclerView>
+
+</LinearLayout>

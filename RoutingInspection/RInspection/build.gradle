@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.seatrend.routinginspection"
+        minSdkVersion 17
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default"]
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    lintOptions {
+
+        disable 'MissingTranslation'
+
+        disable 'ExtraTranslation'
+
+    }
+
+    greendao{
+
+        //指定数据库schema版本号，迁移等操作会用到;
+        schemaVersion 1
+        //dao的包名，包名默认是entity所在的包；
+        daoPackage 'com.greendao.gen'
+        //生成数据库文件的目录;
+        targetGenDir 'src/main/java'
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //协程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    //list
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.2'
+    //picture 压缩
+    implementation 'top.zibin:Luban:1.1.8'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    //OKHttp拦截器
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    //Gsoncovery
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    //db greendao
+    implementation 'org.greenrobot:greendao:3.3.0'
+
+    //    PHOTOVIEW
+    implementation 'com.bm.photoview:library:1.4.1'
+
+    //cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
+    //上下拉刷新加载
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+
+    implementation project(path: ':zxinglib')
+    implementation project(path: ':http_sdk')
+//    implementation files('libs\\javabase64-1.3.1.jar') // add library
+}

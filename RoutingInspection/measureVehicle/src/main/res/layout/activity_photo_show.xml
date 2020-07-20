@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="@mipmap/bg_header"
+        android:layout_height="44dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:text="@string/show_image"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+        <ImageButton
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="2dip"
+            android:layout_marginRight="2dip"
+            android:layout_marginTop="2dip"
+            android:background="@drawable/button_return"
+            android:gravity="center_vertical"
+            android:textColor="@drawable/btn_login_ok_text"
+            android:onClick="btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+    </FrameLayout>
+    <uk.co.senab.photoview.PhotoView android:id="@+id/photo"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_launcher"/>
+</LinearLayout>
