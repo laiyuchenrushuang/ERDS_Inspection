@@ -19,11 +19,13 @@
     <string name="jugde_yes">通过</string>
     <string name="jugde_out">不通过</string>
     <string name="setting_tips">请设置网络IP地址</string>
+    <string name="setting_tips_1">请输入账号</string>
+    <string name="setting_tips_2">请输入密码</string>
     <string name="details">详情</string>
     <!--<string name="address">http://11.121.35.182:9091/vehicleCheckAsistant</string>-->
     <string name="address">http://192.168.0.218:8080/vehicleCheckAsistant</string>
-    <string name="no_data">查询数据为空</string>
-    <string name="plan_no_network">离线计划</string>
+    <string name="no_data">没有查询到%1$s的记录数据</string>
+    <string name="plan_no_network">添加离线</string>
     <string name="search_tip">查验区搜索</string>
     <string name="add_tip">是否添加此计划到离线列表？</string>
     <string name="add_tip_1">此数据已经在离线列表并完成巡检内容！</string>

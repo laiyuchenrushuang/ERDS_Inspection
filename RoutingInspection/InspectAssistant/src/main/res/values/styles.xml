@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
-
+    <style name="AppTheme.TransparentStausBar" parent="AppTheme"></style>
 
     <style name="AVLoadingIndicatorView">
         <item name="minWidth">48dip</item>
@@ -19,8 +19,8 @@
     </style>
 
     <style name="my_editText" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">@color/gray</item>
-        <item name="colorControlActivated">@color/gray</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
     </style>
     <style name="my_editText_l" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/sky_blue</item>

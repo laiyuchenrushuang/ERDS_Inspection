@@ -1,10 +1,12 @@
 package com.seatrend.routinginspection.ui.fragment
 
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seatrend.http_sdk.NormalView
 import com.seatrend.http_sdk.base.ConmmonResponse
@@ -15,6 +17,7 @@ import com.seatrend.routinginspection.base.BaseFragment
 import com.seatrend.routinginspection.base.Constants
 import com.seatrend.routinginspection.entity.PLANEntity
 import com.seatrend.routinginspection.http.HttpRequest
+import com.seatrend.routinginspection.utils.DP2PX
 import com.seatrend.routinginspection.utils.GsonUtils
 import kotlinx.android.synthetic.main.fragment_paln1.*
 
@@ -23,7 +26,6 @@ import kotlinx.android.synthetic.main.fragment_paln1.*
  * Created by ly on 2020/6/28 14:34
  */
 class RIPaln1Fragment : BaseFragment() {
-
 
     private var ll: LinearLayoutManager? = null
     private var adapter: PlanAdapter? = null
@@ -75,7 +77,8 @@ class RIPaln1Fragment : BaseFragment() {
                     val entity = GsonUtils.gson(commonResponse!!.responseString, PLANEntity::class.java)
                     if (page == 1) {
                         shuaxin.finishRefresh()
-                        if (entity?.data != null && entity.data.list!=null && entity.data.list.size > 0) {
+                        mData.clear()
+                        if (entity?.data != null && entity.data.list != null && entity.data.list.size > 0) {
                             mData = entity.data.list as ArrayList<PLANEntity.DataBean.TASK>
                         }
                         adapter!!.setData(mData)
@@ -100,10 +103,10 @@ class RIPaln1Fragment : BaseFragment() {
         return mData
     }
 
-     fun setPlanNoNetwork(flag:Boolean){
-         page = 1
-         getData()
-         adapter!!.setAddModel(flag)
+    fun setPlanNoNetwork(flag: Boolean) {
+        page = 1
+        getData()
+        adapter!!.setAddModel(flag)
     }
 
     override fun bindEvent() {
@@ -112,8 +115,8 @@ class RIPaln1Fragment : BaseFragment() {
             page++
             getData()
         }
-        shuaxin.setOnRefreshListener{
-            page =1
+        shuaxin.setOnRefreshListener {
+            page = 1
             getData()
         }
 
@@ -125,70 +128,67 @@ class RIPaln1Fragment : BaseFragment() {
         search_view.imeOptions = EditorInfo.IME_ACTION_DONE//键盘完成
         search_view.queryHint = resources.getString(R.string.search_tip) //搜索提示
         setUnderLinetransparent(search_view) //去掉下划线
-        setSearchviewTextsize(search_view,17f)
 
+        val argClass = search_view.javaClass
+        // mSearchPlate是SearchView父布局的名字
+        val ownField = argClass.getDeclaredField("mSearchSrcTextView")
+        ownField.isAccessible = true
+        val mView = ownField.get(search_view) as TextView
 
+        mView.textSize = 16.5f
+        mView.setOnEditorActionListener { v, _, event ->
 
-        //模糊查询
-        search_view.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                showLog(" 提交")
-                showLog(" 提交  $query")
+            val query = v.text.toString()
+            showLog(" 提交")
+            showLog(" 提交  $query")
 
-                if (!TextUtils.isEmpty(query)) {
-                    val map = HashMap<String, String>()
-                    map["curPage"] = "1"
-                    map["pageSize"] = "20"
-                    map["xzlx"] = "0"
-                    map["jhzt"] = "0" //计划状态(0待执行，1执行中，2执行完成)
-                    map["bmmc"] = query!! //部门名称
-                    HttpRequest.geT(
-                        Constants.URL.GET_PALN_TASK_LIST,
-                        map,
-                        BaseService::class.java,
-                        true,
-                        object : NormalView {
-                            override fun netWorkTaskSuccess(commonResponse: ConmmonResponse?) {
+            if (!TextUtils.isEmpty(query)) {
+                val map = HashMap<String, String>()
+                map["curPage"] = "1"
+                map["pageSize"] = "20"
+                map["xzlx"] = "0"
+                map["jhzt"] = "0" //计划状态(0待执行，1执行中，2执行完成)
+                map["bmmc"] = query!! //部门名称
+                HttpRequest.geT(
+                    Constants.URL.GET_PALN_TASK_LIST,
+                    map,
+                    BaseService::class.java,
+                    true,
+                    object : NormalView {
+                        override fun netWorkTaskSuccess(commonResponse: ConmmonResponse?) {
 
-                                try {
-                                    val entity = GsonUtils.gson(commonResponse!!.responseString, PLANEntity::class.java)
+                            try {
+                                val entity = GsonUtils.gson(commonResponse!!.responseString, PLANEntity::class.java)
 
-                                    if (entity?.data != null && entity.data.list.isNotEmpty() && entity.data.list.size > 0) {
-                                        val data = entity.data.list as ArrayList<PLANEntity.DataBean.TASK>
-                                        adapter!!.setData(data)
-                                    }
-
-                                } catch (e: Exception) {
-                                    showToast(e.message.toString())
-                                    showToast(resources.getString(R.string.search_null))
+                                if (entity?.data != null && entity.data.list.isNotEmpty() && entity.data.list.size > 0) {
+                                    val data = entity.data.list as ArrayList<PLANEntity.DataBean.TASK>
+                                    adapter!!.setData(data)
+                                } else {
+                                    adapter!!.clearData()
                                 }
-                                dismissLoadingDialog()
-                            }
 
-                            override fun netWorkTaskfailed(commonResponse: ConmmonResponse?) {
-                                showErrorDialog(commonResponse!!.responseString)
+                            } catch (e: Exception) {
+                                showToast(e.message.toString())
+                                adapter!!.clearData()
                                 showToast(resources.getString(R.string.search_null))
-                                dismissLoadingDialog()
                             }
+                            dismissLoadingDialog()
+                        }
 
-                        })
-                } else {
-                    page = 1 //恢复默认
-                    adapter!!.setData(getData())
-                }
+                        override fun netWorkTaskfailed(commonResponse: ConmmonResponse?) {
+                            showErrorDialog(commonResponse!!.responseString)
+                            showToast(resources.getString(R.string.search_null))
+                            adapter!!.clearData()
+                            dismissLoadingDialog()
+                        }
 
-                return false
+                    })
+            } else {
+                page = 1 //恢复默认
+                adapter!!.setData(getData())
             }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-
-                if (TextUtils.isEmpty(newText)){
-                    showLog(" newText = "+newText)
-                }
-                return false
-            }
-
-        })
+            true
+        }
     }
 
 }

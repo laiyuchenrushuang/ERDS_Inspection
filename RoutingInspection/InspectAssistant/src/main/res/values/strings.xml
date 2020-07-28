@@ -12,4 +12,5 @@
     <string name="address">http://11.121.35.182:9091/vehicleCheckAsistant</string>
     <string name="setting_title">设置</string>
     <string name="setting_ok">设置成功</string>
+    <string name="second_step">将二维码放入框内，即可自动扫描</string>
 </resources>

@@ -7,18 +7,21 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
+
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 style="@style/common_text"
                 android:text="序号"/>
+
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 style="@style/common_text"
                 android:text="巡检内容"/>
+
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -26,6 +29,7 @@
                 style="@style/common_text"
                 android:text="结论"/>
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
             android:layout_width="match_parent"
@@ -33,6 +37,7 @@
             android:layout_weight="1">
 
     </androidx.recyclerview.widget.RecyclerView>
+
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,6 +45,7 @@
             android:text="备注"
             android:gravity="left"
             android:layout_margin="12dp"/>
+
     <EditText
             android:id="@+id/ed_bz"
             android:layout_width="match_parent"
@@ -52,5 +58,6 @@
             android:textSize="@dimen/text_normal_14sp"
             android:hint="@string/text_tip"
             android:background="@drawable/system_login_editext"
+            android:maxLength="100"
             android:layout_marginBottom="10dp"/>
 </LinearLayout>

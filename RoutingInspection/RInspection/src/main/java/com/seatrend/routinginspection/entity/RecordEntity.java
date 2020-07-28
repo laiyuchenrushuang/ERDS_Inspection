@@ -210,7 +210,7 @@ public class RecordEntity extends BaseEntity {
 
             private String glbm;
             private String jhzxr;
-            private String jhwcsj;
+            private long jhwcsj;
             private String jhbh;
             private String xzlx;
             private String jhzt;
@@ -234,11 +234,11 @@ public class RecordEntity extends BaseEntity {
                 this.jhzxr = jhzxr;
             }
 
-            public String getJhwcsj() {
+            public long getJhwcsj() {
                 return jhwcsj;
             }
 
-            public void setJhwcsj(String jhwcsj) {
+            public void setJhwcsj(long jhwcsj) {
                 this.jhwcsj = jhwcsj;
             }
 

@@ -22,6 +22,7 @@ import static com.seatrend.routinginspection.db.DbUtils.TABLE.*;
 public class DbUtils {
 
 
+    //区分数据库存储的TAG
     enum TABLE {
         PICTURETABLE("PictureTable"),
         JUDGETABLE("JudgeTable"),
@@ -95,7 +96,7 @@ public class DbUtils {
         if (mHelper == null) {
             mHelper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
         }
-        SQLiteDatabase db = mHelper.getWritableDatabase();
+        db = mHelper.getWritableDatabase();
         return db;
     }
 
@@ -121,7 +122,7 @@ public class DbUtils {
      */
 
     /**
-     * 插入一条记录，表里面要没有与之相同的记录
+     * [离线]插入一条记录，表里面要没有与之相同的记录
      *
      * @param baseTable
      */
@@ -138,7 +139,7 @@ public class DbUtils {
     }
 
     /**
-     * 【在线】模式的增加bean
+     * [在线]模式的增加bean
      *
      * @param bean
      */
@@ -150,7 +151,7 @@ public class DbUtils {
     /**
      * ====================================删除================================================
      * ====================================delete===============================================
-     * delete特定项
+     * [离线]delete特定项
      *
      * @param lsh    计划流水
      * @param tClass 对应表的类名
@@ -166,7 +167,7 @@ public class DbUtils {
     }
 
     /**
-     * 删除计划任务的某一张照片
+     * [离线]删除计划任务的某一张照片
      *
      * @param lsh
      * @param zpPath 唯一的
@@ -180,7 +181,7 @@ public class DbUtils {
     }
 
     /**
-     * 【离线线删除某个bean】
+     * [离线]线删除某个bean
      *
      * @param id
      */
@@ -189,7 +190,7 @@ public class DbUtils {
     }
 
     /**
-     * 【在线删除某个bean】
+     * [在线]删除某个bean
      *
      * @param id
      */
@@ -198,7 +199,7 @@ public class DbUtils {
     }
 
     /**
-     * 【在线删除某个bean】
+     * [在线]删除某个bean
      *
      * @param jhbh
      * @param zpPath
@@ -218,7 +219,7 @@ public class DbUtils {
     }
 
     /**
-     * 删除对应表所有数据
+     * [离线]删除对应表所有数据
      */
     public <T> void deleteAll(Class<T> tClass) {
         if (PICTURETABLE.name.equals(tClass.getSimpleName())) {
@@ -231,7 +232,7 @@ public class DbUtils {
     }
 
     /**
-     * 离线删除plan judge piture的数据
+     * [离线]删除plan judge piture的数据
      *
      * @param lsh
      */
@@ -247,7 +248,7 @@ public class DbUtils {
 
 
     /**
-     * 离线删除plan judge 的数据  上传判定成功删除掉数据防止查看
+     * [离线]删除plan judge 的数据  上传判定成功删除掉数据防止查看
      *
      * @param lsh
      */
@@ -260,7 +261,7 @@ public class DbUtils {
     }
 
     /**
-     * 删除所有数据
+     * [离线]删除所有数据
      */
 
     public void deleteAll() {
@@ -270,7 +271,7 @@ public class DbUtils {
     }
 
     /**
-     * 删除对应的照片bean内容【在线】
+     * [在线]删除对应的照片bean内容
      *
      * @param lsh
      * @param zpPath
@@ -326,7 +327,7 @@ public class DbUtils {
 
 
     /**
-     * 【离线】 更新表的zpdz字段
+     * [离线] 更新表的zpdz字段
      *
      * @param jhbh
      * @param zpPath
@@ -342,7 +343,7 @@ public class DbUtils {
     }
 
     /**
-     * 【在线】 更新表的zpdz字段
+     * [在线] 更新表的zpdz字段
      *
      * @param jhbh
      * @param zpPath
@@ -471,7 +472,7 @@ public class DbUtils {
     }
 
     /**
-     * 【在线】查看照片集合
+     * [在线]查看照片集合
      *
      * @return
      */
@@ -508,7 +509,7 @@ public class DbUtils {
     }
 
     /**
-     * 【在线】 查询bean
+     * [在线] 查询bean
      *
      * @param jhbh
      * @param zpPath

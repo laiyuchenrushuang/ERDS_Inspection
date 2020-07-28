@@ -22,6 +22,7 @@ import com.seatrend.routinginspection.entity.*;
 import com.seatrend.routinginspection.http.HttpRequest;
 import com.seatrend.routinginspection.utils.GsonUtils;
 import com.seatrend.routinginspection.utils.LogUtil;
+import com.seatrend.routinginspection.utils.ServiceUtils;
 
 import java.io.File;
 import java.util.*;
@@ -30,7 +31,7 @@ import java.util.*;
  * Created by ly on 2020/7/9 9:32
  */
 public class PhotoUploadService extends Service {
-    private Timer timer = new Timer();
+    private final Timer timer = new Timer();
     private static final int PERIOD = 10 * 1000;
     private static final int PERIOD_24 = 24 * 60 * 60 * 1000;
     private static final String PUS_TAG = "PhotoUploadService";
@@ -48,9 +49,11 @@ public class PhotoUploadService extends Service {
         Log.i(PUS_TAG, "上传照片服务已创建");
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(PUS_TAG, "上传照片服务已启动");
+        flags = START_STICKY;
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -87,8 +90,8 @@ public class PhotoUploadService extends Service {
         synchronized (list) {
             int listSize = list.size();
             if (listSize > 0) {
-                Log.d(PUS_TAG, "[离线] 任务数据大小 = " + listSize);
-                Log.d(PUS_TAG, "[离线] 任务数据内容 = " + GsonUtils.toJson(list));
+                Log.d(PUS_TAG, "[离线] 图片数据大小 = " + listSize);
+                Log.d(PUS_TAG, "[离线] 图片数据内容 = " + GsonUtils.toJson(list));
                 for (int i = 0; i < listSize; i++) {
                     if (TextUtils.isEmpty(list.get(i).getZpId())) { //服务器没返回zpdz 需要请求
                         //无照片地址 需要file上传
@@ -104,7 +107,7 @@ public class PhotoUploadService extends Service {
                 }
 
             } else {
-                Log.d(PUS_TAG, "[离线] 数据库任务列表为空");
+                Log.d(PUS_TAG, "[离线] 图片列表为空");
             }
         }
     }
@@ -116,10 +119,10 @@ public class PhotoUploadService extends Service {
         //第一步  查询plan表格的计划编号的list
         List<PlanTable> listPlan = DbUtils.getInstance(this).searchPlanTableAllIsDone();
 
-//        Log.d(PUS_TAG, "离线 判定内容 = "+GsonUtils.toJson(listPlan));
+        Log.d(PUS_TAG, "[离线] 判定内容提交列表 = " + GsonUtils.toJson(listPlan));
         //如果没数据
         if (listPlan == null || listPlan.size() <= 0) {
-            Log.d(PUS_TAG, "[离线] 的计划任务列表为空");
+            Log.d(PUS_TAG, "[离线] 判定内容提交列表为空");
             return;
         }
 
@@ -128,6 +131,7 @@ public class PhotoUploadService extends Service {
 
             String jhbh = listPlan.get(i).getLsh(); // 计划编号
             String jhbz = listPlan.get(i).getJhbz(); // 计划备注
+            String yhdh = listPlan.get(i).getUserdh(); // 用户代号
 
             //查询JudeTable 是否有计划任务判定项的存储
             List<JudgeTable> judgeTables = DbUtils.getInstance(this).searchJudgeByWhere(jhbh);
@@ -143,6 +147,7 @@ public class PhotoUploadService extends Service {
                     jEntity.setRwbh(judgeTables.get(j).getRwbh()); //任务ID
                     jEntity.setRwzxjg(judgeTables.get(j).getRwzxjg()); //任务结果
                     jEntity.setRwzxr(judgeTables.get(j).getRwzxr()); //任务执行人
+                    jEntity.setRwzxrid(yhdh); //用户代号id
                     postJudgetaskEntityList.add(jEntity);
                 }
             }
@@ -157,25 +162,24 @@ public class PhotoUploadService extends Service {
 
                 @Override
                 public void netWorkTaskSuccess(ConmmonResponse commonResponse) {
-                    Log.d(PUS_TAG, "[离线]上传判定项成功 JHBH = ");
-
                     try {
                         JudgePostCallBack entity = GsonUtils.gson(commonResponse.responseString, JudgePostCallBack.class);
                         String jhbh = entity.getData();
                         if (!TextUtils.isEmpty(jhbh)) {
                             //上传成功 需要删除planTable  和judgeTable里面对应jhbh（lsh）的值
                             DbUtils.getInstance(PhotoUploadService.this).deleteDbPlanJudge(jhbh);
+                            Log.d(PUS_TAG, "[离线] 判定内容提交成功 JHBH = " + jhbh);
                         }
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Log.d(PUS_TAG, "[离线]上传判定项发生异常 ");
+                        Log.d(PUS_TAG, "[!离线] 判定内容提交发生解析异常 ");
                     }
                 }
 
                 @Override
                 public void netWorkTaskfailed(ConmmonResponse commonResponse) {
-                    Log.d(PUS_TAG, "[离线]上传判定项失败 ");
+                    Log.d(PUS_TAG, "[!离线]上传判定项失败 ");
                 }
             });
 
@@ -185,7 +189,7 @@ public class PhotoUploadService extends Service {
 
     }
 
-    private TimerTask timerTask = new TimerTask() {
+    private final TimerTask timerTask = new TimerTask() {
         @Override
         public void run() {
             mHandler.sendEmptyMessage(CHECK_UPLOAD);
@@ -201,8 +205,8 @@ public class PhotoUploadService extends Service {
             int listSize = list.size();
             if (listSize > 0) {
 
-                Log.d(PUS_TAG, "[在线] 任务数据大小 = " + listSize);
-                Log.d(PUS_TAG, "[在线] 任务数据内容 = " + GsonUtils.toJson(list));
+                Log.d(PUS_TAG, "[在线] 图片数据大小 = " + listSize);
+                Log.d(PUS_TAG, "[在线] 图片数据内容 = " + GsonUtils.toJson(list));
 
 
                 for (int i = 0; i < listSize; i++) {
@@ -222,7 +226,7 @@ public class PhotoUploadService extends Service {
 
 
             } else {
-                Log.d(PUS_TAG, "[在线] 数据库任务列表为空");
+                Log.d(PUS_TAG, "[在线] 图片列表为空");
             }
         }
 
@@ -243,7 +247,7 @@ public class PhotoUploadService extends Service {
 
             @Override
             public void netWorkTaskSuccess(ConmmonResponse commonResponse) {
-                Log.d(PUS_TAG, "保存照片信息 成功 = " + commonResponse.getResponseString());
+                Log.d(PUS_TAG, "[在线] 保存照片信息 成功 = " + commonResponse.getResponseString());
 
 
                 try {
@@ -261,7 +265,7 @@ public class PhotoUploadService extends Service {
             @Override
             public void netWorkTaskfailed(ConmmonResponse commonResponse) {
 
-                Log.d(PUS_TAG, "保存照片信息 失败 = " + commonResponse.getResponseString());
+                Log.d(PUS_TAG, "[!在线] 保存照片信息 失败 = " + commonResponse.getResponseString());
             }
         });
 
@@ -279,7 +283,7 @@ public class PhotoUploadService extends Service {
                 true, new NormalView() {
                     @Override
                     public void netWorkTaskSuccess(ConmmonResponse commonResponse) {
-                        Log.d(PUS_TAG, "文件上传  成功  = " + commonResponse.getResponseString());
+                        Log.d(PUS_TAG, "[在线] 文件上传  成功  = " + commonResponse.getResponseString());
                         if (!TextUtils.isEmpty(commonResponse.getResponseString())) {
                             try {
                                 FileUploadEntity fileUploadEntity = GsonUtils.gson(commonResponse.responseString, FileUploadEntity.class);
@@ -307,7 +311,7 @@ public class PhotoUploadService extends Service {
                     @Override
                     public void netWorkTaskfailed(ConmmonResponse commonResponse) {
 
-                        Log.d(PUS_TAG, "文件上传  成功  = " + commonResponse.getResponseString());
+                        Log.d(PUS_TAG, "[!在线] 文件上传  失败  = " + commonResponse.getResponseString());
                     }
                 });
     }
@@ -343,7 +347,7 @@ public class PhotoUploadService extends Service {
             @Override
             public void netWorkTaskfailed(ConmmonResponse commonResponse) {
 
-                Log.d(PUS_TAG, "保存照片信息 失败 = " + commonResponse.getResponseString());
+                Log.d(PUS_TAG, "[!离线] 保存照片信息 失败 = " + commonResponse.getResponseString());
             }
         });
 
@@ -388,9 +392,24 @@ public class PhotoUploadService extends Service {
                     @Override
                     public void netWorkTaskfailed(ConmmonResponse commonResponse) {
 
-                        Log.d(PUS_TAG, "文件上传  成功  = " + commonResponse.getResponseString());
+                        Log.d(PUS_TAG, "[!离线] 文件上传  失败  = " + commonResponse.getResponseString());
                     }
                 });
     }
 
+    @Override
+    public void onDestroy() {
+
+
+        if (!ServiceUtils.isRunService(this, this.getPackageName() + "." + this.getClass().getSimpleName())) {
+            LogUtil.Companion.d(PUS_TAG + " ================================================================");
+            Log.d(PUS_TAG, "服务重启 ： " + this.getPackageName() + "." + this.getClass().getSimpleName());
+            LogUtil.Companion.d(PUS_TAG + " ================================================================");
+            Intent intent = new Intent(Constants.Companion.getPROTECT_SERVICE());
+            this.sendBroadcast(intent);
+            timer.cancel();
+            timerTask.cancel();
+        }
+        super.onDestroy();
+    }
 }

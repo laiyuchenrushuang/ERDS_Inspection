@@ -28,10 +28,10 @@
                         </shape>
                     </item>
 
-                    <item android:left="42dp">
+                    <item android:left="45dp">
                         <shape android:shape="oval">
                             <solid android:color="@color/white" />
-                            <corners android:radius="20dp" />
+                            <corners android:radius="25dp" />
                         </shape>
                     </item>
                 </layer-list>
@@ -54,10 +54,10 @@
                         </shape>
                     </item>
 
-                    <item android:end="42dp">
+                    <item android:end="45dp">
                         <shape android:shape="oval">
                             <solid android:color="@color/white" />
-                            <corners android:radius="20dp" />
+                            <corners android:radius="25dp" />
                         </shape>
                     </item>
                 </layer-list>

@@ -19,13 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
         <LinearLayout
                 android:id="@+id/ll_network_state"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/sky_blue"
-                android:visibility="gone">
+                android:gravity="center_horizontal"
+                android:background="@color/white"
+                android:visibility="visible">
 
             <ImageView
                     android:layout_width="wrap_content"
@@ -35,14 +35,13 @@
                     android:src="@mipmap/network_error_warning"/>
 
             <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_network"
                     android:textColor="@color/red"
                     android:padding="5dp"
                     android:textSize="@dimen/text_large_16sp"/>
         </LinearLayout>
-
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -183,7 +182,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
-
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

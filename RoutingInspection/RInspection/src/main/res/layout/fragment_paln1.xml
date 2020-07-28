@@ -9,14 +9,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/gray"
-            android:gravity="center">
+            android:gravity="center_vertical">
 
         <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
-                android:layout_margin="10dp"
                 android:layout_height="30dp"
+                android:layout_margin="10dp"
                 android:imeOptions="actionSearch"
+                android:singleLine="true"
                 app:showDividers="none"
                 style="@style/search_text"
                 android:background="@drawable/searchview"/>

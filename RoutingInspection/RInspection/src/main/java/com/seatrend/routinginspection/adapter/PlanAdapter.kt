@@ -46,6 +46,11 @@ class PlanAdapter(var mContext: Context) : RecyclerView.Adapter<PlanAdapter.MyVi
         notifyDataSetChanged()
     }
 
+    fun clearData() {
+        this.mData.clear()
+        notifyDataSetChanged()
+    }
+
     //无网络和有网络
     fun setAvFlag(flag: Int) {
         this.flag = flag

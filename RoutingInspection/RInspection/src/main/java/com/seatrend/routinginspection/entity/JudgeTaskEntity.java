@@ -249,6 +249,16 @@ public class JudgeTaskEntity extends BaseEntity {
         private String id;
         private String glbm;
         private String rwzxr; //+++任务执行人
+        private String rwzxrid; //+++任务执行人id
+
+
+        public String getRwzxrid() {
+            return rwzxrid;
+        }
+
+        public void setRwzxrid(String rwzxrid) {
+            this.rwzxrid = rwzxrid;
+        }
 
         public String getRwzxr() {
             return rwzxr;

@@ -42,13 +42,12 @@
                     android:id="@+id/cb_jugde"
                     style="@style/common_text"
                     android:layout_width="70dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_height="25dp"
                     android:button="@null"
                     android:background="@drawable/cy_check_button"
                     android:gravity="center_vertical"
                     android:text=""
-                    android:textSize="14sp"/>
+                    android:textSize="13sp"/>
         </LinearLayout>
     </LinearLayout>
 

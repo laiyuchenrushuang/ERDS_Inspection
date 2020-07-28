@@ -13,17 +13,21 @@ class SearchResultActivity : BaseActivity() {
     }
 
     private fun getData() {
-        lsh.text = lshentity!!.data.lsh
-        clsbdh.text = lshentity!!.data.clsbdh
-        cllx.text = lshentity!!.data.cllx
+        try {
+            lsh.text = lshentity!!.data.lsh
+            clsbdh.text = lshentity!!.data.clsbdh
+            cllx.text = lshentity!!.data.cllx
 
-        cyy.text = lshentity!!.data.cyry
-        lszt.text = lshentity!!.data.lszt
+            cyy.text = lshentity!!.data.cyry
+            lszt.text = lshentity!!.data.lszt
 
-        shy.text = lshentity!!.data.syr
-        syr.text = lshentity!!.data.syr
-        lczt.text = lshentity!!.data.lczt
-        cyrq.text = StringUtils.longToStringDataNoHour(lshentity!!.data.cyrq)
+            shy.text = lshentity!!.data.syr
+            syr.text = lshentity!!.data.syr
+            lczt.text = lshentity!!.data.lczt
+            cyrq.text = StringUtils.longToStringDataNoHour(lshentity!!.data.cyrq)
+        } catch (e: Exception) {
+            showToast("查询信息为空")
+        }
     }
 
     override fun bindEvent() {

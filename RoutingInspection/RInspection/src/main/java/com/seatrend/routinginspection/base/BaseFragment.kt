@@ -18,6 +18,7 @@ import android.text.Layout
 import android.view.*
 import androidx.core.content.ContextCompat
 import com.seatrend.routinginspection.R
+import com.seatrend.routinginspection.utils.DP2PX
 
 
 /**
@@ -78,11 +79,19 @@ abstract class BaseFragment : Fragment(), BaseView {
 //        }
 
         //保留“-“ 方便门牌输入
-        override fun filter(source: CharSequence, start: Int, end: Int, dest: Spanned, dstart: Int, dend: Int): CharSequence? {
+        override fun filter(
+            source: CharSequence,
+            start: Int,
+            end: Int,
+            dest: Spanned,
+            dstart: Int,
+            dend: Int
+        ): CharSequence? {
             for (i in start until end) {
                 if (!Character.isLetterOrDigit(source[i])
-                        && Character.toString(source[i]) != "_"
-                        && Character.toString(source[i]) != "-") {
+                    && Character.toString(source[i]) != "_"
+                    && Character.toString(source[i]) != "-"
+                ) {
                     return ""
                 }
             }
@@ -166,7 +175,7 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
     /**设置SearchView下划线透明 */
-     fun setUnderLinetransparent(searchView: SearchView) {
+    fun setUnderLinetransparent(searchView: SearchView) {
         try {
             val argClass = searchView.javaClass
             // mSearchPlate是SearchView父布局的名字
@@ -181,19 +190,22 @@ abstract class BaseFragment : Fragment(), BaseView {
         }
 
     }
+
     /**设置SearchView下划线透明 */
-     fun setSearchviewTextsize(searchView: SearchView, fl: Float) {
+    fun setSearchviewTextsize(searchView: SearchView, fl: Float) {
         try {
             val argClass = searchView.javaClass
             // mSearchPlate是SearchView父布局的名字
             val ownField = argClass.getDeclaredField("mSearchSrcTextView")
             ownField.setAccessible(true)
             val mView = ownField.get(searchView) as TextView
-//            mView.textSize = fl
-//            mView.gravity = Gravity.FILL_VERTICAL
-//            val lp = mView.layoutParams
-//            lp.height = ViewGroup.LayoutParams.MATCH_PARENT
-//            mView.layoutParams = lp
+            val lp = mView.layoutParams as LinearLayout.LayoutParams
+            lp.gravity = Gravity.CENTER_VERTICAL
+            mView.layoutParams = lp
+            mView.textSize = fl
+//            mView.setHintTextColor(Color.RED)
+//            mView.setTextColor(Color.RED)
+//            mView.setBackgroundColor(Color.BLACK)
         } catch (e: NoSuchFieldException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {

@@ -48,6 +48,7 @@ class DetailFragment1:BaseFragment() {
             tv_bz.text = recordData.data.stationPlanList[0].jhwcbz
             if(TextUtils.isEmpty(recordData.data.stationPlanList[0].jhwcbz)){
                 tv_bz.visibility = View.INVISIBLE
+                tv_bz_s.visibility = View.INVISIBLE
             }
             tv_jh_date.text = StringUtils.longToStringDataNoHour(recordData.data.jhcjrq)
             tv_xj_date.text = StringUtils.longToStringData(recordData.data.stationPlanList[0].jhwcsj)

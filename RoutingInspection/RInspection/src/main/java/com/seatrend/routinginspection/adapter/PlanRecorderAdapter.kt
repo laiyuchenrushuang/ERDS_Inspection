@@ -71,7 +71,7 @@ class PlanRecorderAdapter(var mContext: Context) : RecyclerView.Adapter<PlanReco
             //设置数据
             sName!!.text = station.bmmc
             sState!!.text = "详情"
-            tv_station_time!!.text = "巡站完成日期："+StringUtils.longToStringDataNoHour(station.xzrq)
+            tv_station_time!!.text = "巡站完成日期："+StringUtils.longToStringDataNoHour(station.jhwcsj)
 //            if ("2".equals(station.jhzt)) {
 //                sState!!.setTextColor(ContextCompat.getColor(mContext, R.color.green))
 //            } else {

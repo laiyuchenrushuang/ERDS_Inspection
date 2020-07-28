@@ -1,185 +1,514 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
 
     <include layout="@layout/common_title"/>
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="vertical"
-            android:layout_margin="12dp">
 
-        <LinearLayout
+    <RelativeLayout
+            android:id="@+id/ll_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_color"
+            android:visibility="gone">
+
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/btn_white">
+        </RelativeLayout>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="姓名"
-                    style="@style/common_text"/>
+        <ImageView
+                android:id="@+id/picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@mipmap/wx"/>
 
-            <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/common_text"
+                android:layout_below="@+id/picture"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/holo_red_dark"
+                android:text="无效的二维码"/>
+    </RelativeLayout>
 
-            <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="空"
-                    style="@style/common_text"/>
-        </LinearLayout>
 
-    </LinearLayout>
-
-    <include layout="@layout/line"/>
-
-    <LinearLayout
+    <RelativeLayout
+            android:id="@+id/ll_data"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="vertical"
-            android:layout_margin="12dp">
+            android:layout_height="wrap_content"
+            android:background="@color/theme_color">
 
-        <LinearLayout
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="100dp"
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="预约业务"
-                    style="@style/common_text"/>
+                android:background="@drawable/btn_white">
 
-            <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"/>
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                    android:id="@+id/yw"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="空"
-                    style="@style/common_text"/>
-        </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="50dp"
+                        >
 
-    </LinearLayout>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:orientation="vertical">
 
-    <include layout="@layout/line"/>
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="vertical"
-            android:layout_margin="12dp">
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="姓名"
+                                    style="@style/common_text"/>
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                            <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1"/>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="查验机构"
-                    style="@style/common_text"/>
+                            <TextView
+                                    android:id="@+id/name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="空"
+                                    style="@style/common_text"/>
+                        </LinearLayout>
 
-            <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"/>
 
-            <TextView
-                    android:id="@+id/jg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="空"
-                    style="@style/common_text"/>
-        </LinearLayout>
+                    </LinearLayout>
 
-    </LinearLayout>
 
-    <include layout="@layout/line"/>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:orientation="vertical"
+                            >
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="vertical"
-            android:layout_margin="12dp">
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="预约业务"
+                                    style="@style/common_text"/>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="日期"
-                    style="@style/common_text"/>
+                            <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1"/>
 
-            <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"/>
+                            <TextView
+                                    android:id="@+id/yw"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="空"
+                                    style="@style/common_text"/>
+                        </LinearLayout>
 
-            <TextView
-                    android:id="@+id/time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="空"
-                    style="@style/common_text"/>
-        </LinearLayout>
 
-    </LinearLayout>
+                    </LinearLayout>
 
-    <include layout="@layout/line"/>
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="vertical"
-            android:layout_margin="12dp">
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:orientation="vertical"
+                            >
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="预约编号"
-                    style="@style/common_text"/>
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="查验机构"
+                                    style="@style/common_text"/>
 
-            <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"/>
+                            <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1"/>
 
-            <TextView
-                    android:id="@+id/bh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:maxWidth="150dp"
-                    android:textIsSelectable="true"
-                    android:text="空"
-                    style="@style/common_text"/>
-        </LinearLayout>
+                            <TextView
+                                    android:id="@+id/jg"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="空"
+                                    style="@style/common_text"/>
 
-    </LinearLayout>
+                        </LinearLayout>
 
-    <include layout="@layout/line"/>
 
-    <TextView
-            android:id="@+id/done"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:textStyle="bold"
-            android:textColor="@color/green"
-            android:textSize="40sp"
-            android:gravity="center"
-            android:text="已到场"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:orientation="vertical"
+                            >
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="日期"
+                                    style="@style/common_text"/>
+
+                            <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1"/>
+
+                            <TextView
+                                    android:id="@+id/time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="空"
+                                    style="@style/common_text"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:orientation="vertical"
+                            >
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="预约编号"
+                                    style="@style/common_text"/>
+
+                            <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1"/>
+
+                            <TextView
+                                    android:id="@+id/bh"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:maxWidth="150dp"
+                                    android:textIsSelectable="true"
+                                    android:text="空"
+                                    style="@style/common_text"
+                                    android:gravity="center_vertical|end"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:orientation="vertical"
+                            >
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="国产/进口车"
+                                    style="@style/common_text"/>
+
+                            <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1"/>
+
+                            <TextView
+                                    android:id="@+id/jkc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:maxWidth="150dp"
+                                    android:textIsSelectable="true"
+                                    android:text="空"
+                                    style="@style/common_text"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/ll_zy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:orientation="vertical"
+                                >
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="登记证书编号"
+                                        style="@style/common_text"/>
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="1"/>
+
+                                <TextView
+                                        android:id="@+id/djzsbh"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:maxWidth="150dp"
+                                        android:textIsSelectable="true"
+                                        android:text="空"
+                                        style="@style/common_text"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:orientation="vertical"
+                                >
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="车牌号"
+                                        style="@style/common_text"/>
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="1"/>
+
+                                <TextView
+                                        android:id="@+id/cph"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:maxWidth="150dp"
+                                        android:textIsSelectable="true"
+                                        android:text="空"
+                                        style="@style/common_text"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/ll_zcjk"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:orientation="vertical"
+                                >
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="车辆识别代号"
+                                        style="@style/common_text"/>
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="1"/>
+
+                                <TextView
+                                        android:id="@+id/clsbdh"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:maxWidth="150dp"
+                                        android:textIsSelectable="true"
+                                        android:text="空"
+                                        style="@style/common_text"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:orientation="vertical"
+                                >
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="发动机号"
+                                        style="@style/common_text"/>
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="1"/>
+
+                                <TextView
+                                        android:id="@+id/fdjh"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:maxWidth="150dp"
+                                        android:textIsSelectable="true"
+                                        android:text="空"
+                                        style="@style/common_text"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:orientation="vertical"
+                                >
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="进口车出厂日期"
+                                        style="@style/common_text"/>
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="1"/>
+
+                                <TextView
+                                        android:id="@+id/ccrq"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:maxWidth="150dp"
+                                        android:textIsSelectable="true"
+                                        android:text="空"
+                                        style="@style/common_text"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:orientation="vertical"
+                                >
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:text="进口车签发日期"
+                                        style="@style/common_text"/>
+
+                                <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="1"/>
+
+                                <TextView
+                                        android:id="@+id/qfrq"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:maxWidth="150dp"
+                                        android:textIsSelectable="true"
+                                        android:text="空"
+                                        style="@style/common_text"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+        <ImageView
+                android:id="@+id/iv_ydc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:src="@mipmap/ydc"/>
+
+        <TextView
+                android:id="@+id/tv_yqd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/common_text"
+                android:layout_below="@+id/iv_ydc"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/theme_color"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="已到场"/>
+    </RelativeLayout>
 </LinearLayout>

@@ -77,9 +77,16 @@ class Inspect1Fragment : BaseFragment() {
         } catch (e: Exception) {
             "" //为空的时候 “”
         }
+
+        val yhdh =  try {
+            entity.applicationUser.seaSysuser.yhdh
+        } catch (e: Exception) {
+            "" //为空的时候 “”
+        }
         if (data.size > 0) {
             for(db in data){
                 db.rwzxr = username
+                db.rwzxrid = yhdh
             }
         }
 

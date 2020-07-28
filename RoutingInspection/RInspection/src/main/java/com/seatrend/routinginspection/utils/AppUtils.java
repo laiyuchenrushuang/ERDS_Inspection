@@ -19,6 +19,7 @@ import com.seatrend.routinginspection.utils.cache.ACache;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -188,4 +189,22 @@ public class AppUtils {
         }
         return false;
     }
+
+    /**
+     * 反射获取android系统状态栏的高度
+     * @return 单位: 像素px
+     */
+    public static int getSystemStatusBarHeight(Context context) {
+        try {
+            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
+            Object obj = clazz.newInstance();
+            Field field = clazz.getField("status_bar_height");
+            int x = Integer.parseInt(field.get(obj).toString());
+            return context.getResources().getDimensionPixelSize(x);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

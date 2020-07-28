@@ -17,16 +17,15 @@ import com.seatrend.routinginspection.base.Constants
 import com.seatrend.routinginspection.entity.LoginEntity
 import com.seatrend.routinginspection.http.HttpRequest
 import com.seatrend.routinginspection.ui.no_network.N_RIPlanActivity
-import com.seatrend.routinginspection.utils.AppUtils
-import com.seatrend.routinginspection.utils.Base64Utils
-import com.seatrend.routinginspection.utils.GsonUtils
-import com.seatrend.routinginspection.utils.SharedPreferencesUtils
 import com.seatrend.routinginspection.utils.cache.ACache
 import kotlinx.android.synthetic.main.activity_login.*
 import android.view.WindowManager
 import android.view.Window
 import android.graphics.Color
+import android.widget.LinearLayout
+import androidx.core.view.marginTop
 import com.seatrend.routinginspection.TestActivity
+import com.seatrend.routinginspection.utils.*
 
 
 /**
@@ -41,6 +40,13 @@ class LoginActivity : BaseActivity() {
         initNetAddress()
 
         fullScreen()
+
+        //设置提示的高度
+//        val topH = DP2PX.px2dip(this,AppUtils.getSystemStatusBarHeight(this).toFloat())
+
+        val params = ll_network_state.layoutParams as LinearLayout.LayoutParams
+        params.topMargin = AppUtils.getSystemStatusBarHeight(this)
+        ll_network_state.layoutParams = params
 
         if(AppUtils.isApkInDebug(this)){
             user_name.setText( "system1")
@@ -86,10 +92,16 @@ class LoginActivity : BaseActivity() {
         btn_login.setOnClickListener {
 
             try {
-                if (TextUtils.isEmpty(ACache.get(this).getAsString(Constants.APP.NETADDRESS))) {
-                    showToast(resources.getString(com.seatrend.routinginspection.R.string.setting_tips))
+                if (TextUtils.isEmpty(user_name.text.toString())) {
+                    showToast(resources.getString(R.string.setting_tips_1))
                     return@setOnClickListener
                 }
+
+                if (TextUtils.isEmpty(user_psw.text.toString())) {
+                    showToast(resources.getString(R.string.setting_tips_2))
+                    return@setOnClickListener
+                }
+
                 showLoadingDialog()
                 val map = HashMap<String, String>()
                 map["username"] = Base64Utils.base64Encode(user_name.text.toString(), "UTF-8").replace("\n", "")
@@ -127,7 +139,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun setVersion() {
-        app_version.text = getString(com.seatrend.routinginspection.R.string.add_version,AppUtils.getVersionName(this))
+        app_version.text = getString(R.string.add_version,AppUtils.getVersionName(this))
     }
 
     override fun getLayout(): Int {

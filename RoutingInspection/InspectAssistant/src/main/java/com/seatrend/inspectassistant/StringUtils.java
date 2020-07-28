@@ -91,7 +91,7 @@ public class StringUtils {
      * 处理空字符串
      */
     public static String isNulls(String obj) {
-        String content = "--";
+        String content = "空";
         if (obj != null && !obj.equals("") && !obj.equals("null"))
             content = obj;
         return content;

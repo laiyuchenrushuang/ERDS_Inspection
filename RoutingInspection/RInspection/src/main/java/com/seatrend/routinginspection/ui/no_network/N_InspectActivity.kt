@@ -56,7 +56,6 @@ class N_InspectActivity : BaseActivity() {
 
         btn_next.setOnClickListener {
             saveDataToDb()
-
         }
 
         tv_jugde.setOnClickListener {

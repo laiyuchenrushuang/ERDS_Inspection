@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -31,6 +32,8 @@
         <activity android:name=".PlugStateActivity"/>
         <activity android:name=".SearchResultActivity"/>
         <activity android:name=".SettingActivity"/>
+        <activity android:name=".zxing.activity.CaptureActivity"
+                android:theme="@style/AppTheme.TransparentStausBar"></activity>
     </application>
 
 </manifest>

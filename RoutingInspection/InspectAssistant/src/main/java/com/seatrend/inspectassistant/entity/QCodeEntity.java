@@ -1,9 +1,11 @@
 package com.seatrend.inspectassistant.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by ly on 2020/7/20 10:49
  */
-public class QCodeEntity {
+public class QCodeEntity implements Serializable {
     /**
      * bh : 7353432a-b79a-4317-b074-c209dac40452
      * uuid : 1234567
@@ -29,8 +31,9 @@ public class QCodeEntity {
     private String uuid;
     private int cyqid;
     private String cyqmc;
-    private String ywlx;
+    private String ywlx; //0注册1转移2变更3转入9其他
     private String yyrq;
+    private String yyrqmc;
     private String yysd;
     private String zt;
     private String xm;
@@ -43,6 +46,25 @@ public class QCodeEntity {
     private String hphm;
     private String djzsbh;
     private String ywlxmc;
+    private String dmsm2; //++++代码说明 （A 注册 B转移 D变更 I转入）
+
+    public String getDmsm2() {
+        return dmsm2;
+    }
+
+    public void setDmsm2(String dmsm2) {
+        this.dmsm2 = dmsm2;
+    }
+
+
+
+    public String getYyrqmc() {
+        return yyrqmc;
+    }
+
+    public void setYyrqmc(String yyrqmc) {
+        this.yyrqmc = yyrqmc;
+    }
 
     public String getBh() {
         return bh;

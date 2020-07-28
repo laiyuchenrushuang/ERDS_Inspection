@@ -1,4 +1,5 @@
 package com.seatrend.routinginspection.adapter
+
 import android.content.Context
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -7,8 +8,11 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.seatrend.routinginspection.entity.JudgeTaskEntity
+import com.seatrend.routinginspection.utils.DP2PX
+import com.seatrend.routinginspection.utils.LogUtil
 
 
 /**
@@ -90,18 +94,27 @@ class InspectAdapter(private var mContext: Context) : RecyclerView.Adapter<Inspe
             cb_jugde.gravity = Gravity.CENTER
         }
 
+        //45 是 xml里面的设置  cy_check_button
         private fun setTextRight(cb_jugde: CheckBox) {
 //            cb_jugde.setBackgroundResource(R.mipmap.ic_determine_unqualified)
             cb_jugde.gravity = Gravity.END or Gravity.CENTER_VERTICAL
-            cb_jugde.setPadding(0, 0, 5, 0)
             cb_jugde!!.text = mContext.resources.getString(com.seatrend.routinginspection.R.string.jugde_out)
+            val textLengh = DP2PX.px2dip(mContext, cb_jugde.text.length * DP2PX.sp2px(mContext, 13f).toFloat())
+//            LogUtil.d(textLengh)
+            cb_jugde.setPadding(0, 0, DP2PX.dip2px(mContext, (50 - textLengh).toFloat() / 2), 0)
+
         }
 
+        //45 是 xml里面的设置 cy_check_button
         private fun setTextLeft(cb_jugde: CheckBox) {
 //            cb_jugde.setBackgroundResource(R.mipmap.ic_determine_qualified)
             cb_jugde.gravity = Gravity.LEFT or Gravity.CENTER_VERTICAL
-            cb_jugde.setPadding(15, 0, 0, 0)
             cb_jugde!!.text = mContext.resources.getString(com.seatrend.routinginspection.R.string.jugde_yes)
+
+            val textLengh = DP2PX.px2dip(mContext, cb_jugde.text.length * DP2PX.sp2px(mContext, 13f).toFloat())
+//            LogUtil.d(textLengh)
+            cb_jugde.setPadding(DP2PX.dip2px(mContext, (50 - textLengh).toFloat() / 2), 0, 0, 0)
+
         }
 
         private fun bindEvent() {

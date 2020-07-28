@@ -46,6 +46,7 @@ public interface Constants {
         val RECORD_DETAIL_ENTITY = "record_detail_entity"
         val NO_NETWORK = "NO_NETWORK"
         val YES_NETWORK = "YES_NETWORK"
+        val PROTECT_SERVICE = "protect_picture_upload_service"
     }
 
     object URL {

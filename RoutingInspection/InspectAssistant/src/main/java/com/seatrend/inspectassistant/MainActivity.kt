@@ -6,14 +6,7 @@ import android.content.Intent
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.common_title.*
-import android.text.TextUtils
-import com.google.zxing.client.android.CaptureActivity
-import com.seatrend.http_sdk.HttpService
-import com.seatrend.http_sdk.NormalView
-import com.seatrend.http_sdk.base.ConmmonResponse
-import com.seatrend.http_sdk.inter.base.BaseService
-import okhttp3.MediaType
-import okhttp3.RequestBody
+import com.seatrend.inspectassistant.zxing.activity.CaptureActivity
 
 
 class MainActivity : BaseActivity() {
@@ -65,28 +58,7 @@ class MainActivity : BaseActivity() {
             when (requestCode) {
                 REQUEST -> {
 
-                    if (data != null && !TextUtils.isEmpty(data.getStringExtra("qcode_result"))) {
-                        LoadingDialog.getInstance().showLoadDialog(this)
-                        HttpService.getInstance().postJson(SharedPreferencesUtils.getNetworkAddress() + "/",
-                            Constants.POST_QCODE,
-                            data.getStringExtra("qcode_result"), BaseService::class.java,
-                            false, object : NormalView {
-                                override fun netWorkTaskSuccess(commonResponse: ConmmonResponse?) {
-                                    LoadingDialog.getInstance().dismissLoadDialog()
 
-                                    val intent = Intent(this@MainActivity, OrderActivity::class.java)
-                                    intent.putExtra("qcode_result",data.getStringExtra("qcode_result"))
-                                    startActivity(intent)
-                                }
-
-                                override fun netWorkTaskfailed(commonResponse: ConmmonResponse?) {
-                                    LoadingDialog.getInstance().dismissLoadDialog()
-                                    showErrorDialog(commonResponse!!.responseString)
-                                }
-
-                            });
-
-                    }
 
                 }
             }

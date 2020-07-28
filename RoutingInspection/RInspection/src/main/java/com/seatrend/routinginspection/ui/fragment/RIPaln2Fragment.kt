@@ -52,6 +52,7 @@ class RIPaln2Fragment : BaseFragment() {
         super.onResume()
         showLog(" plan f2 onresume ")
         getData(StringUtils.longToStringDataNoHour(System.currentTimeMillis()))
+        search_view.text = StringUtils.longToStringDataNoHour(System.currentTimeMillis())
     }
 
     private fun initRecycleView() {
@@ -85,12 +86,14 @@ class RIPaln2Fragment : BaseFragment() {
                     val entity = GsonUtils.gson(commonResponse!!.responseString, RecordEntity::class.java)
                     if (page == 1) {
                         shuaxin.finishRefresh()
+                        mData.clear()
                         if (entity?.data != null && entity.data.list.isNotEmpty() && entity.data.list.size > 0) {
                             mData = entity.data.list as ArrayList<RecordEntity.DataBean.ListBean>
+                        } else{
+                            if(this@RIPaln2Fragment.userVisibleHint){
+                                showToast(resources.getString(R.string.no_data,search_view.text.toString()))
+                            }
                         }
-//                        else{
-//                            showToast(resources.getString(R.string.no_data))
-//                        }
                         adapter!!.setData(mData)
                     } else {
                         shuaxin.finishLoadmore()
@@ -118,12 +121,12 @@ class RIPaln2Fragment : BaseFragment() {
 //        shuaxin.isEnableRefresh = false //取消下拉刷新
         shuaxin.setOnLoadmoreListener {
             page++
-            showToast(search_view.text.toString())
             getData(search_view.text.toString())
         }
         shuaxin.setOnRefreshListener {
             page = 1
             getData(StringUtils.longToStringDataNoHour(System.currentTimeMillis()))
+            search_view.text = StringUtils.longToStringDataNoHour(System.currentTimeMillis())
         }
 
         search_view.setOnClickListener {

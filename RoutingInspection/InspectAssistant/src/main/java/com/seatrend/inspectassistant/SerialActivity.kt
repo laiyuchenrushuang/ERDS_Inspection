@@ -103,12 +103,13 @@ class SerialActivity : BaseActivity() {
             val map = HashMap<String, String>()
             map["lsh"] = if (!TextUtils.isEmpty(ed_lsh.text.toString())) ed_lsh.text.toString() else ""
 
-            map["hphm"] = if(!TextUtils.isEmpty(ed_hphm.text.toString())) ed_hphm.text.toString().toUpperCase() else ""
-            map["clsbdh"] = if(!TextUtils.isEmpty(ed_clsbdh.text.toString())) ed_clsbdh.text.toString().toUpperCase() else ""
+            map["hphm"] = if (!TextUtils.isEmpty(ed_hphm.text.toString())) ed_hphm.text.toString().toUpperCase() else ""
+            map["clsbdh"] =
+                if (!TextUtils.isEmpty(ed_clsbdh.text.toString())) ed_clsbdh.text.toString().toUpperCase() else ""
 
             LoadingDialog.getInstance().showLoadDialog(this)
             val service = HttpService.getInstance()
-                .getApiService(SharedPreferencesUtils.getNetworkAddress()+"/", QuestService::class.java, false)
+                .getApiService(SharedPreferencesUtils.getNetworkAddress() + "/", QuestService::class.java, false)
 
             val call = service.getServer(Constants.GET_LSH, map)
             call.enqueue(object : Callback<LshEntity> {
@@ -118,9 +119,16 @@ class SerialActivity : BaseActivity() {
 
                 override fun onResponse(call: Call<LshEntity>, response: Response<LshEntity>) {
                     LoadingDialog.getInstance().dismissLoadDialog()
-                    intent.setClass(this@SerialActivity, SearchResultActivity::class.java)
-                    intent.putExtra("result",response.body())
-                    startActivity(intent)
+                    val result = response.body()
+
+                    if (result != null && result.data != null) {
+                        intent.setClass(this@SerialActivity, SearchResultActivity::class.java)
+                        intent.putExtra("result", result)
+                        startActivity(intent)
+                    } else {
+                        showToast("查询信息为空")
+                    }
+
                 }
 
             })

@@ -41,8 +41,9 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".ui.LoginActivity"
-                  android:theme="@style/AppTheme.TransparentStausBar">
+        <activity
+                android:name=".ui.LoginActivity"
+                android:theme="@style/AppTheme.TransparentStausBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -59,17 +60,29 @@
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/file_paths"/>
         </provider>
+
         <activity android:name=".ui.SettingActivity"/>
         <activity android:name=".ui.RIPlanActivity"/>
         <activity android:name=".ui.InspectActivity"/>
         <activity android:name=".ui.ShowPictureActivity"/>
         <activity android:name=".ui.AutographActivity"/>
         <activity android:name=".ui.DetailActivity"/>
-        <activity android:name=".TestActivity"
-        android:theme="@style/AppTheme.TransparentStausBar"/>
+        <activity
+                android:name=".TestActivity"
+                android:theme="@style/AppTheme.TransparentStausBar"/>
         <activity android:name=".ui.no_network.N_RIPlanActivity"/>
         <activity android:name=".ui.no_network.N_InspectActivity"/>
-        <service android:name=".PhotoUploadService"/>
+
+        <service
+                android:name=".PhotoUploadService"
+                android:priority="1000">
+
+        </service>
+        <receiver android:name=".reciver.ProtectServiceReceiver">
+            <intent-filter>
+                <action android:name="protect_picture_upload_service"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 

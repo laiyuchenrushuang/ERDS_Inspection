@@ -132,14 +132,23 @@ public class LoadingDialog {
 
 
     public void dismissLoadDialog() {
-        if (mDialog != null) {
-            mDialog.dismiss();
+        try {
+            if (mDialog != null) {
+                mDialog.dismiss();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            mDialog = null;
         }
     }
 
     public boolean dialogShowing() {
-        if (mDialog != null && mDialog.isShowing()) {
-            return true;
+        try {
+            if (mDialog != null && mDialog.isShowing()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }

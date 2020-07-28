@@ -29,7 +29,7 @@ public class PlanTable extends BaseTable{
     private String glbm = ""; //管理部门编号
     private String userdh = ""; //用户代号
 
-    private String jhbz; //计划备注
+    private String jhbz=""; //计划备注
 
     @ToMany(joinProperties = {@JoinProperty(name = "lsh", referencedName = "lsh")})
     List<JudgeTable> judgeTableList;

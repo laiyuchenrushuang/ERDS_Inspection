@@ -4,7 +4,6 @@ import android.view.View
 import com.seatrend.http_sdk.base.GsonUtils
 import com.seatrend.inspectassistant.entity.QCodeEntity
 import kotlinx.android.synthetic.main.activity_oder.*
-import kotlinx.android.synthetic.main.activity_search_result.*
 
 /**
  * Created by ly on 2020/6/30 10:54
@@ -18,13 +17,37 @@ class OrderActivity :BaseActivity(){
     private fun getData() {
         try {
             val entity = GsonUtils.gson(intent.getStringExtra("qcode_result"),QCodeEntity::class.java)
-            name.text = entity.xm
-            yw.text = entity.ywlxmc
-            jg.text = entity.cyqmc
-            time.text = entity.yyrq
-            bh.text = entity.bh
+
+            if("1" == entity.zt){
+                name.text = StringUtils.isNulls(entity.xm)
+                yw.text = StringUtils.isNulls(entity.ywlxmc)
+                jg.text = StringUtils.isNulls(entity.cyqmc)
+                time.text = StringUtils.isNulls(entity.yyrqmc)
+                bh.text = StringUtils.isNulls(entity.bh)
+                jkc.text = if("1" == entity.gcjk) "国产" else "进口"
+
+                if("2" == entity.gcjk && "A" == entity.dmsm2){ //进口车
+                    ll_zcjk.visibility = View.VISIBLE
+                    clsbdh.text = StringUtils.isNulls(entity.clsbdh)
+                    fdjh.text = StringUtils.isNulls(entity.fdjh)
+                    ccrq.text = StringUtils.isNulls(entity.ccrq)
+                    qfrq.text = StringUtils.isNulls(entity.qfrq)
+                }
+
+                if("D" == entity.dmsm2 || "B" == entity.dmsm2){
+                    ll_zy.visibility = View.VISIBLE
+                    cph.text = StringUtils.isNulls(entity.hphm)
+                    djzsbh.text = StringUtils.isNulls(entity.djzsbh)
+                }
+            }else{
+                ll_data.visibility = View.GONE
+                ll_error.visibility = View.VISIBLE
+            }
+
+
         } catch (e: Exception) {
-            done.visibility = View.GONE
+            ll_data.visibility = View.GONE
+            ll_error.visibility = View.VISIBLE
         }
     }
 
